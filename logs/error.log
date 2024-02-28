@@ -2659,3 +2659,5 @@
 2024-02-28 14:53:50 - PHP Warning:  Use of undefined constant HTTP_CATALOG - assumed 'HTTP_CATALOG' (this will throw an Error in a future version of PHP) in D:\xampp\htdocs\dcasero\admin\controller\common\header.php on line 15
 2024-02-28 14:57:56 - PHP Warning:  Use of undefined constant HTTP_SERVER - assumed 'HTTP_SERVER' (this will throw an Error in a future version of PHP) in D:\xampp\htdocs\dcasero\admin\controller\common\header.php on line 9
 2024-02-28 14:57:56 - PHP Warning:  Use of undefined constant HTTP_CATALOG - assumed 'HTTP_CATALOG' (this will throw an Error in a future version of PHP) in D:\xampp\htdocs\dcasero\admin\controller\common\header.php on line 15
+2024-02-28 16:51:36 - PHP Notice:  Undefined index: name in D:\xampp\htdocs\dcasero\catalog\controller\extension\module\webdigifytabs.php on line 203
+2024-02-28 16:52:45 - PHP Notice:  Undefined index: name in D:\xampp\htdocs\dcasero\catalog\controller\extension\module\webdigifytabs.php on line 203
