@@ -1,5 +1,5 @@
 <?php
-// Version
+// Version test go
 define('VERSION', '3.0.3.8');
 
 // Configuration
