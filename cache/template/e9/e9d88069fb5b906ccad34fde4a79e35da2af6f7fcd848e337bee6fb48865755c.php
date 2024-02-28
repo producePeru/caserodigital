@@ -36,7 +36,7 @@ class __TwigTemplate_03d5cf77db12395098fb4cc9f7750abb05a90e0ba557df96760f16b34ab
         // line 1
         if (($context["modules"] ?? null)) {
             // line 2
-            echo "<aside id=\"header-left\">
+            echo "<aside style=\"position: absolute\" id=\"header-left\">
 \t";
             // line 3
             $context['_parent'] = $context;
