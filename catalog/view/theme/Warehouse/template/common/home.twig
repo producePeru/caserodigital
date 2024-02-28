@@ -1,0 +1,70 @@
+{{ header }}
+{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+
+    <div id="content" class="{{ class }}">
+        <div class="content-top"> 
+            <div class="content-top-inner">
+                    {{ content_top }}
+            </div>
+        </div>
+
+        <div class="content-bottom">
+            <div class="container">  
+                <div class="row">
+                    {{ content_bottom }}
+                </div>
+            </div>
+        </div>
+    {{ column_right }}
+</div>
+{{ footer }}
+
+<script type="text/javascript">
+
+    {# $(document).ready(function() {
+        $("#wdcmsservice").each(function (i) {
+            $('.owl-carousel').on('changed.owl.carousel initialized.owl.carousel', function (event) {
+            $(event.target)
+                .find('.owl-item').removeClass('first')
+                .eq(event.item.index).addClass('first');
+            });
+            $('.services-carousel').owlCarousel({
+                    items: 5,
+                    autoPlay: true,
+                    singleItem: false,
+                    navigation: true,
+                    navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+                    pagination: false,
+                    itemsDesktop : [1500,4],
+                    itemsDesktopSmall:[1199,4],
+                    itemsTablet :	[991,3],
+                    itemsTabletSmall : [600, 2],
+                    itemsMobile: [479, 1]
+            });
+        });
+    });	 #}
+
+
+    $(document).ready(function(){
+    $('.subbanner-inner').owlCarousel({
+            items: 3,
+            autoPlay: true,
+            singleItem: false,
+            navigation: true,
+            navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+            pagination: false,
+            itemsDesktop : [1500,3],
+            itemsDesktopSmall:[1199,3],
+            itemsTablet :	[767,3],
+            itemsTabletSmall : [650, 2],
+            itemsMobile: [479, 1]
+        });
+    });
+</script>

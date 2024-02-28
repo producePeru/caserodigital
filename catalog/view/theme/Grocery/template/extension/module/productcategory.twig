@@ -1,0 +1,183 @@
+<div class="box ProductbyCategory bottom-to-top hb-animate-element">
+ <div class="container">
+ <div class="row">
+<div class="ProductbyCategory-wrapper">
+  <div class="tab-head">
+  <div class="title-wrapper">
+   <div class="hometab-heading box-heading">{{ heading_title }}</div>
+  </div>
+    <div id="tabss" class="htabs">
+      <ul class="etabs">
+        {% for category in categories %}
+          <li class="tab">
+            <a href="#{{ category.name }}">{{ category.nameview }}</a>
+          </li> 
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+<div class="right-part">
+<div class="product-column">
+  {% for category in categories %}
+  <div id="{{ category.name }}" class="tab-content">
+  <div class="box-content">
+
+  {% if slide_value == 1 %}
+  	<div class="customNavigation">
+		<a class="fa fa-angle-left wdproductcategory_prev prev">&nbsp;</a>
+		<a class="fa fa-angle-right wdproductcategory_next next">&nbsp;</a>
+		</div>
+	{% endif %}
+  
+	<div class="box-product {% if slide_value == 1 %}productcategorycarousel owl-carousel{% else %}productbox-grid{% endif %}" id="{% if slide_value == 1 %}productcategory{{ category.count }}-carousel{%else %}productcategory{{ category.count }}-grid{% endif %}">
+
+  {% if category.products %} 
+	 {% for product in category.products %}
+  <div class="{% if slide_value == 1 %}slider-item{% else %}product-items{% endif %}">
+    <div class="product-block product-thumb transition">
+    <div class="product-block-inner">
+      <div class="image {% if product.qty == 0 %}outstock{% endif %}">
+        {% if product.thumb_swap %}
+          <a href="{{ product.href }}">
+          <img src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive reg-image"/>
+            <div class="image_content">
+              <img class="img-responsive hover-image" src="{{ product.thumb_swap }}" title="{{ product.name }}" alt="{{ product.name }}"/>
+            </div>
+          </a>
+          {% else %}
+          <a href="{{ product.href }}">
+          <img src="{{ product.thumb }}" title="{{ product.name }}" alt="{{ product.name }}" class="img-responsive"/></a>
+        {% endif %}
+        {% if product.special %}
+          <span class="special-tag">{{product.percentsaving}}%</span>
+        {% endif %}
+        {% if product.qty == 0 %}
+          <span class="stock_status">{{text_outstock}}</span>
+        {% endif %}
+             
+        <div class="product_hover_block">
+          <div class="wishlist-button offer-btn">
+            <button class="wishlist" type="button"  title="{{ button_wishlist }} " onclick="wishlist.add('{{ product.product_id }} ');"></button>
+          </div>
+          <div class="compare-button offer-btn">
+            <button class="compare_button" type="button"  title="{{ button_compare }} " onclick="compare.add('{{ product.product_id }} ');">{{ button_compare }}</button>
+          </div>
+          <div class="quickview-button offer-btn">
+            <a class="quickbox"  title="{{ button_quickview }}" href="{{ product.quick }}">{{ button_quickview }}</a>
+          </div>
+        </div>
+        <div class="countdown">
+          {% if product.specialTime %}
+            <div class="count-down clock">
+              <div data-countdown="{{ product.specialTime }}" class="countbox hastime"></div>
+            </div>	
+          {% endif %}
+        </div>	
+	  	</div>
+      <div class="product-details">
+        <div class="caption">   
+          {# <p class="desc"><?php echo $product['description']; ?></p> 
+          <span class="product-brand">{{product.brand}}</span>#}
+
+          {# <span class="product-cat">{{ category.nameview }}</span>  #}
+          <h4><a href="{{ product.href }} ">{{ product.name }} </a></h4>
+
+          {#<div id="quantity_bar">
+            <span class="quantity">{{ text_stock }} : <span class="counter">{{ product.qty }}</span></span>
+            <div class="progress"><div class="progress-bar" role="progressbar" ></div></div>
+          </div>#}
+
+        
+          <div class="rating">
+            {% for i in 1..5 %}
+            {% if product.rating < i %}
+            <span class="fa fa-stack"><i class="fa fa-star off fa-stack-2x"></i></span>
+            {% else %}
+            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+            {% endif %}
+            {% endfor %}
+            {#&nbsp;<span style="cursor:pointer;" class="total-review{{ product.product_id }}">({{product.review}})</span>#}
+          </div>
+
+          {% if product.price %}
+            <p class="price">
+              {% if not product.special %}
+              {{ product.price }}
+              {% else %}
+              <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+              {% endif %}
+                {% if product.tax %}
+                <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                {% endif %}
+            </p>
+          {% endif %} 
+
+          <div class="action">
+            {% if product.qty > 0 %}
+                <button type="button" class="cart_button" onclick="cart.add('{{ product.product_id }}');" title="{{ button_cart }}" >{{ button_cart }}</button>
+                {% else %}
+                <button type="button" class="cart_button out_of_stock" title="{{text_outstock}}" >{{text_outstock}}</button>
+            {% endif %}
+          </div>	
+
+        </div>	
+      </div>
+  </div>
+</div>
+    <script> 
+    $('.total-review{{ product.product_id }}').on('click', function() { 
+    var t='{{product.href}}'; 
+    const parseResult = new DOMParser().parseFromString(t, "text/html");
+    const parsedUrl = parseResult.documentElement.textContent;
+    window.location.href = parsedUrl + '&review';
+    return false;
+   });
+  </script>
+  </div>
+  {% endfor %} {# product loop #}
+
+{% else %}
+ <span class="listing">{{ listing }}</span> 
+{% endif %}
+</div>
+</div>
+</div>
+<span class="productcategory{{ category.count }}_default_width wdproductcategory" style="display:none; visibility:hidden"> </span>
+{% endfor %} {# category loop #}
+</div></div>
+</div>
+{{bannersecond}}
+
+</div>
+</div>
+</div>
+<script>
+$('#tabss a').tabss();
+
+$(document).ready(function(){
+	$('.productcategorycarousel').owlCarousel({
+		items: 6,
+		singleItem: false,
+		navigation: false,
+		pagination: false,
+		itemsDesktop : [1529,5],
+		itemsDesktopSmall :	[1199,4],
+		itemsTablet :	[991,3],
+		itemsTabletSmall :	[600,2],
+		itemsMobile :	[543,2]
+	});
+	// Custom Navigation Events
+	$(".wdproductcategory_next").click(function(){
+		$('.productcategorycarousel').trigger('owl.next');
+	})
+	$(".wdproductcategory_prev").click(function(){
+		$('.productcategorycarousel').trigger('owl.prev');
+	});	
+});	
+
+</script>
+
+<style>
+
+</style>
+
